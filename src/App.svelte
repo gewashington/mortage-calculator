@@ -44,21 +44,25 @@
    .form {
 		flex-direction: column;
 		width: 80%;
-		height: 65%;
+		height: 80%;
 		max-width: 600px;
-		padding: 24px;
 		background: white;
 		border-radius: 8px;
 	}
 
-   .input-container {
-		flex-direction: column;
+	label {
 		margin-bottom: 8px;
 	}
 
-   label {
-	   margin-bottom: 8px;
+   
+   .input-container {
+		flex-direction: column;
+		border: 1px solid gray;
+		margin: 8px;
+		padding: 12px;
+		border-radius: 8px; 
    }
+
 </style>
 
 <div class="container">
@@ -89,7 +93,7 @@
 			<option value="daily">Daily</option>
 		</select>
 	</div>
-	<div class="input-container">	
+	<div>	
 		<button on:click={calculateMortgatePayments}>Calculate monthly payments</button>
 	</div>
 	{#if rateProperties.payment}
