@@ -69,21 +69,22 @@
 
 <div class="container">
 <div class="form">
-	<h1>Mortgage Calculator</h1>
+	<p>Mortgage Calculator</p>
+	<p>To see how much you will be paying, fill out the form below</p>
 	<div class="input-container">
-		<label>Enter loan here</label>
+		<label>Enter loan amount</label>
 		<input type="text" name="loan" on:change={handleInput}>
 	</div>
 	<div class="input-container">
-		<label>Enter downpayment here</label>
+		<label>Enter down payment amount</label>
 		<input type="text" name="downPayment" on:change={handleInput}>
 	</div>
 	<div class="input-container">
-		<label>Enter rate here</label>
+		<label>Enter interest rate</label>
 		<input type="text" name="rate" on:change={handleInput}>
 	</div>
 	<div class="input-container">
-		<label>Enter years here</label>
+		<label>Enter number of years</label>
 		<input type="text" name="years" on:change={handleInput}>
 	</div>
 	<div class="input-container">	
@@ -96,7 +97,7 @@
 		</select>
 	</div>
 	<div>	
-		<button on:click={calculateMortgatePayments}>Calculate monthly payments</button>
+		<button on:click={calculateMortgatePayments}>Calculate payments</button>
 	</div>
 	{#if rateProperties.payment}
 		You will pay {rateProperties.payment.toFixed(2)} {rateProperties.termType}
