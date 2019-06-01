@@ -1,3 +1,3 @@
-A mortagage calculator that calculates possible monthly framework
+A mortagage calculator that calculates possible monthly mortgate payments
 
 Framework: Svelte JS

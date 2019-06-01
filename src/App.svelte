@@ -21,21 +21,14 @@
 	function calculateMortgatePayments() {
 		const { loan, downPayment, rate, years, termType } = rateProperties;
 		let afterDownpayment = loan - downPayment;
-		console.log('Loan', loan)
-		console.log('Down', downPayment)
-		console.log(afterDownpayment)
-		let terms = years * termTypes[termType]; //Update 12 to whatever number needed for daily and weekly
-		console.log(terms)
-		let calculatedRate = ( rate / 100) / termTypes[termType]; //update 12 to whatever number needed for daily and weekly
-		console.log(calculatedRate)
+		let terms = years * termTypes[termType];
+		let calculatedRate = ( rate / 100) / termTypes[termType]; 
 		let base = calculatedRate + 1;
-		console.log(base)
 		rateProperties.payment = afterDownpayment * (calculatedRate * Math.pow(base, terms)) / ((Math.pow(base, terms)) - 1);
 	}
 </script>
 
-
-<div>
+<div class="container">
 	<div>
 		<label>Enter loan here</label>
 		<input type="text" name="loan" on:change={handleInput}>
