@@ -28,24 +28,59 @@
 	}
 </script>
 
+<style>
+	.container, .form, .input-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+   .container {
+	width: 100%;
+	height: 100%;
+	background: url('images/home1.jpg');
+   }
+
+   .form {
+		flex-direction: column;
+		width: 80%;
+		height: 65%;
+		max-width: 600px;
+		padding: 24px;
+		background: white;
+		border-radius: 8px;
+	}
+
+   .input-container {
+		flex-direction: column;
+		margin-bottom: 8px;
+	}
+
+   label {
+	   margin-bottom: 8px;
+   }
+</style>
+
 <div class="container">
-	<div>
+<div class="form">
+	<h1>Mortgage Calculator</h1>
+	<div class="input-container">
 		<label>Enter loan here</label>
 		<input type="text" name="loan" on:change={handleInput}>
 	</div>
-	<div>
+	<div class="input-container">
 		<label>Enter downpayment here</label>
 		<input type="text" name="downPayment" on:change={handleInput}>
 	</div>
-	<div>
+	<div class="input-container">
 		<label>Enter rate here</label>
 		<input type="text" name="rate" on:change={handleInput}>
 	</div>
-	<div>	
+	<div class="input-container">
 		<label>Enter years here</label>
 		<input type="text" name="years" on:change={handleInput}>
 	</div>
-	<div>	
+	<div class="input-container">	
 		<label>Select how often you will be paying</label>
 		<select name="termType" on:change={handleInput}>
 			<option disabled selected value> -- select an option -- </option>
@@ -54,10 +89,11 @@
 			<option value="daily">Daily</option>
 		</select>
 	</div>
-	<div>
+	<div class="input-container">	
 		<button on:click={calculateMortgatePayments}>Calculate monthly payments</button>
 	</div>
 	{#if rateProperties.payment}
 		You will pay {rateProperties.payment.toFixed(2)} {rateProperties.termType}
 	{/if}
+</div>
 </div>
