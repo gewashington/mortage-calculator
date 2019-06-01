@@ -57,6 +57,8 @@
    
    .input-container {
 		flex-direction: column;
+		width: 300px;
+		height: 65px;
 		border: 1px solid gray;
 		margin: 8px;
 		padding: 12px;
