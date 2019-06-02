@@ -16,7 +16,6 @@
 	}
 
 	let visible = false;
-	let answer;
 
 	function calculateMortgatePayments() {
 		const { loan, downPayment, rate, years, termType } = rateProperties;
@@ -26,7 +25,6 @@
 		let base = calculatedRate + 1;
 		rateProperties.payment = afterDownpayment * (calculatedRate * Math.pow(base, terms)) / ((Math.pow(base, terms)) - 1);
 		visible = true;
-		answer = `You will pay ${rateProperties.payment.toFixed(2)} ${rateProperties.termType}`
 	}
 
 	function handleInput(e) {
@@ -117,7 +115,7 @@
 			<input type="number" name="downPayment" on:change={handleInput} bind:value={rateProperties.downPayment} min=0>
 		</div>
 		<div class="input-container">
-			<label>Enter interest rate</label>
+			<label>Enter interest rate (%)</label>
 			<input type="number" name="rate" on:change={handleInput} bind:value={rateProperties.rate} min=0>
 		</div>
 		<div class="input-container">
@@ -136,7 +134,7 @@
 		<div class="payment-container">
 			{#if rateProperties.payment && visible}
 				<h3 transition:fly="{{ y: 50, duration: 2000 }}">
-					{answer}
+					You will pay ${rateProperties.payment.toFixed(2)} {rateProperties.termType}
 				</h3>
 			{/if}
 		</div>
