@@ -31,7 +31,7 @@
 		visible = true;
 	}
 
-	function handleInput(e) {
+	function handleInputChange() {
 		calculateMortgagePayments()
 	}
 </script>
@@ -112,23 +112,23 @@
 		</div>
 		<div class="input-container">
 			<label>Enter loan amount</label>
-			<input type="number" name="loan" on:change={calculateMortgage} bind:value={rateProperties.loan} min=0>
+			<input type="number" name="loan" on:change={handleInputChange} bind:value={rateProperties.loan} min=0>
 		</div>
 		<div class="input-container">
 			<label>Enter down payment amount</label>
-			<input type="number" name="downPayment" on:change={handleInput} bind:value={rateProperties.downPayment} min=0>
+			<input type="number" name="downPayment" on:change={handleInputChange} bind:value={rateProperties.downPayment} min=0>
 		</div>
 		<div class="input-container">
 			<label>Enter interest rate (%)</label>
-			<input type="number" name="rate" on:change={handleInput} bind:value={rateProperties.rate} min=0>
+			<input type="number" name="rate" on:change={handleInputChange} bind:value={rateProperties.rate} min=0>
 		</div>
 		<div class="input-container">
 			<label>Enter number of years</label>
-			<input type="number" name="years" on:change={handleInput} bind:value={rateProperties.years} min=1>
+			<input type="number" name="years" on:change={handleInputChange} bind:value={rateProperties.years} min=1>
 		</div>
 		<div class="input-container">	
 			<label>Select how often you will be paying</label>
-			<select name="termType" on:change={handleInput}  bind:value={rateProperties.termType}>
+			<select name="termType" on:change={handleInputChange}  bind:value={rateProperties.termType}>
 				<option disabled selected value> -- select an option -- </option>
 				<option value="monthly">Monthly</option>
 				<option value="weekly">Weekly</option>
