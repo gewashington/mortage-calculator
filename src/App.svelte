@@ -1,3 +1,7 @@
+<!-- TODO -->
+<!-- Fix inputs to update calculations live -->
+<!-- Add UI Framework? -->
+
 <script>
 	import { fly } from 'svelte/transition';
 	let rateProperties = {
