@@ -21,7 +21,7 @@
 
 	let visible = false;
 
-	function calculateMortgatePayments() {
+	function calculateMortgagePayments() {
 		const { loan, downPayment, rate, years, termType } = rateProperties;
 		let afterDownpayment = loan - downPayment;
 		let terms = years * termTypes[termType];
@@ -32,7 +32,7 @@
 	}
 
 	function handleInput(e) {
-		calculateMortgatePayments()
+		calculateMortgagePayments()
 	}
 </script>
 
@@ -112,7 +112,7 @@
 		</div>
 		<div class="input-container">
 			<label>Enter loan amount</label>
-			<input type="number" name="loan" on:change={handleInput} bind:value={rateProperties.loan} min=0>
+			<input type="number" name="loan" on:change={calculateMortgage} bind:value={rateProperties.loan} min=0>
 		</div>
 		<div class="input-container">
 			<label>Enter down payment amount</label>
