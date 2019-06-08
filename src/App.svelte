@@ -1,14 +1,17 @@
 <!-- TODO -->
 <!-- Fix inputs to update calculations live -->
+<!-- Error Handling -->
 <!-- Add UI Framework? -->
 
+
 <script>
+	import Error from './Error.svelte'
 	import { fly } from 'svelte/transition';
 	let rateProperties = {
 		loan: 0,
 		downPayment: 0,
 		rate: 0,
-		years: 0,
+		years: 1,
 		termType: '',
 		payment: 0,
 	}
@@ -20,7 +23,7 @@
 	}
 
 	let visible = false;
-
+	let errors = {};
 	function calculateMortgagePayments() {
 		const { loan, downPayment, rate, years, termType } = rateProperties;
 		let afterDownpayment = loan - downPayment;
@@ -31,8 +34,26 @@
 		visible = true;
 	}
 
-	function handleInputChange() {
-		calculateMortgagePayments()
+	function isError() {
+		const { loan, downPayment, years } = rateProperties;
+		if (parseInt(downPayment) > parseInt(loan)) {
+			errors.downPayment = 'Down payment amount cannot be greater than loan amount';
+		}
+
+		if(years <= 0) {
+			errors.years = 'Years has to be greater than zero'
+		}
+		
+		return Object.keys(errors).length > 0 ? errors : null;
+	}
+
+	function handleInputChange(e) {
+		rateProperties[e.target.name] = e.target.value;
+	}
+
+	function handleButtonClick() {
+		isError();
+		calculateMortgagePayments();
 	}
 </script>
 
@@ -135,7 +156,13 @@
 				<option value="daily">Daily</option>
 			</select>
 		</div>
+		<button on:click={handleButtonClick}>Calculate monthly payments</button>
 		<div class="payment-container">
+			{#if errors}
+				{#each Object.values(errors) as error }
+					<Error error={error} />
+				{/each}
+			{/if}
 			{#if rateProperties.payment && visible}
 				<h3 transition:fly="{{ y: 50, duration: 2000 }}">
 					You will pay ${rateProperties.payment.toFixed(2)} {rateProperties.termType}
