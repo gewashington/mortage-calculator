@@ -114,8 +114,6 @@
 <!-- TODO: 
 * Add error handling for infinity error
 * Show term type after calculating mortgage
-* Fix select css
-* Fix error css
 * Iterate properties through input forms
 -->
 
