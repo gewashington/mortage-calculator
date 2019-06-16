@@ -20,7 +20,6 @@
   ];
 
   let visible = false;
-  let errors = {};
 
   function calculateMortgagePayments() {
     const { loan, downPayment, rate, years, termType } = rateProperties;
@@ -34,18 +33,20 @@
     visible = true;
   }
 
-  function isError() {
+    function isError() {
     const { loan, downPayment, years } = rateProperties;
+    let errors = {};
+    console.log('errors at beginning', errors)
     if (parseInt(downPayment) > parseInt(loan)) {
       errors.downPayment =
         "Down payment amount cannot be greater than loan amount";
     }
 
-    if (years <= 0) {
+    if (years < 1) {
       errors.years = "Years has to be greater than zero";
     }
-
-    return Object.keys(errors).length > 0 ? errors : null;
+      console.log('errors at end', errors)
+    return Object.keys(errors).length > 0 ? errors : {};
   }
 
   function handleInputChange(e) {
@@ -53,7 +54,6 @@
   }
 
   function handleButtonClick() {
-    isError();
     calculateMortgagePayments();
   }
 </script>
@@ -79,16 +79,14 @@
   .container,
   .form,
   .title-container,
-  .payment-container,
-  .button-container {
+  .payment-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
 
-  .payment-container,
-  .button-container {
+  .payment-container {
     width: 300px;
     height: 65px;
   }
@@ -154,12 +152,11 @@
       value={rateProperties.termType} />
     <button on:click={handleButtonClick}>Calculate monthly payments</button>
     <div class="payment-container">
-      {#if errors}
-        {#each Object.values(errors) as error}
+      {#if Object.keys(isError()).length > 0}
+        {#each Object.values(isError()) as error}
           <Error {error} />
         {/each}
-      {/if}
-      {#if payment && visible}
+      {:else if payment && visible}
         <h3 transition:fly={{ y: 50, duration: 2000 }}>
           You will pay ${payment.toFixed(2)}
         </h3>

@@ -8,6 +8,7 @@
   h3 {
     text-align: center;
     color: red;
+    font-size: 12px;
   }
 </style>
 
